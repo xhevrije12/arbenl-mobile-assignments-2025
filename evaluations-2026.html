@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud & MCC 2026 Public Evaluations</title>
+  <meta name="description" content="Public instructor evaluation summaries for Cloud and MCC 2026 student submissions.">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #101828;
+      --muted: #5b6678;
+      --line: #d9e0ea;
+      --paper: #ffffff;
+      --soft: #f5f7fb;
+      --teal: #00796b;
+      --blue: #2457d6;
+      --amber: #b45309;
+      --green: #17803d;
+      --rose: #c7365f;
+      --shadow: 0 16px 38px rgba(16, 24, 40, 0.10);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(0, 121, 107, 0.08), rgba(36, 87, 214, 0.08)),
+        var(--soft);
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    .shell {
+      width: min(1280px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+
+    .topbar,
+    .hero,
+    .toolbar,
+    .card-head,
+    .card-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border-radius: var(--radius);
+      background: conic-gradient(from 120deg, var(--green), var(--teal), var(--blue), var(--green));
+      color: white;
+      font-weight: 900;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 4px;
+      font-size: 2rem;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-size: 1.35rem;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .brand p,
+    .muted,
+    .evaluation-card p,
+    .empty {
+      color: var(--muted);
+    }
+
+    .top-actions,
+    .card-links,
+    .language-switch {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .button,
+    .language-switch button {
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      color: var(--ink);
+      padding: 10px 14px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .button.primary,
+    .button.active,
+    .button[aria-current="page"],
+    .language-switch button.active {
+      border-color: var(--teal);
+      background: var(--teal);
+      color: #fff;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      align-items: flex-start;
+      margin: 22px 0 18px;
+      padding: 22px;
+      background:
+        linear-gradient(135deg, rgba(16, 24, 40, 0.90), rgba(23, 128, 61, 0.78)),
+        url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=80");
+      background-position: center;
+      background-size: cover;
+      color: white;
+    }
+
+    .hero h2 {
+      max-width: 780px;
+      margin-bottom: 12px;
+      font-size: 2.45rem;
+      line-height: 1;
+    }
+
+    .hero p {
+      max-width: 780px;
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 1.05rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--teal);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero .eyebrow {
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .stat {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--teal);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 0 12px 28px rgba(16, 24, 40, 0.06);
+    }
+
+    .stat:nth-child(2) {
+      border-left-color: var(--green);
+    }
+
+    .stat:nth-child(3) {
+      border-left-color: var(--amber);
+    }
+
+    .stat:nth-child(4) {
+      border-left-color: var(--blue);
+    }
+
+    .stat strong,
+    .stat span {
+      display: block;
+    }
+
+    .stat strong {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      margin-top: 6px;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .toolbar {
+      margin-bottom: 16px;
+      padding: 16px;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      gap: 12px;
+      min-width: min(100%, 560px);
+    }
+
+    .filters input,
+    .filters select {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfcfe;
+      color: var(--ink);
+      padding: 0 12px;
+      outline: none;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 14px;
+    }
+
+    .evaluation-card {
+      display: grid;
+      gap: 12px;
+      min-height: 280px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--amber);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 12px 26px rgba(16, 24, 40, 0.06);
+    }
+
+    .evaluation-card.reviewed {
+      border-top-color: var(--green);
+    }
+
+    .evaluation-card.needs-fixes {
+      border-top-color: var(--rose);
+    }
+
+    .topic-id,
+    .status,
+    .score {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 30px;
+      border-radius: var(--radius);
+      padding: 0 10px;
+      font-size: 0.8rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .topic-id {
+      background: #e6f4f1;
+      color: var(--teal);
+    }
+
+    .status {
+      background: rgba(180, 83, 9, 0.12);
+      color: var(--amber);
+    }
+
+    .status.reviewed {
+      background: rgba(23, 128, 61, 0.13);
+      color: var(--green);
+    }
+
+    .status.needs-fixes {
+      background: rgba(199, 54, 95, 0.12);
+      color: var(--rose);
+    }
+
+    .identity,
+    .feedback {
+      display: grid;
+      gap: 5px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfcfe;
+      overflow-wrap: anywhere;
+    }
+
+    .identity strong,
+    .identity span {
+      display: block;
+    }
+
+    .identity span {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .score {
+      width: max-content;
+      background: rgba(36, 87, 214, 0.12);
+      color: var(--blue);
+    }
+
+    .score.pending {
+      background: #f1f5f9;
+      color: var(--muted);
+    }
+
+    .card-links a {
+      color: var(--blue);
+      font-weight: 800;
+      overflow-wrap: anywhere;
+    }
+
+    .empty {
+      display: none;
+      padding: 24px;
+      border: 1px dashed var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      text-align: center;
+      font-weight: 800;
+    }
+
+    @media (max-width: 980px) {
+      .topbar,
+      .hero,
+      .toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      .filters {
+        grid-template-columns: 1fr;
+        min-width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(100% - 24px, 1280px);
+      }
+
+      h1 {
+        font-size: 1.4rem;
+      }
+
+      .hero h2 {
+        font-size: 1.72rem;
+      }
+
+      .stats,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">30</div>
+        <div>
+          <h1 data-i18n="page.heading">Cloud & MCC 2026 Public Evaluations</h1>
+          <p data-i18n="page.subtitle">Read-only instructor feedback summaries for submitted assignments.</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <a class="button" href="index.html" data-i18n="nav.backHome">Back to Home</a>
+        <a class="button" href="mcc-2026.html" data-i18n="nav.reserve">Reservations</a>
+        <a class="button" href="submissions-2026.html" data-i18n="nav.submissions">Submissions</a>
+        <a class="button active" href="evaluations-2026.html" aria-current="page" data-i18n="nav.evaluations">Evaluations</a>
+        <a class="button" href="syllabus-mcc-2026.html" data-i18n="nav.syllabus">Syllabus</a>
+        <a class="button" href="instructions-mcc-2026.html" data-i18n="nav.instructionsEn">Instructions EN</a>
+        <a class="button" href="udhezime-mcc-2026.html" data-i18n="nav.instructionsSq">Udhëzime Shqip</a>
+        <div class="language-switch" aria-label="Language switch">
+          <button type="button" class="active" data-lang="en">ENG</button>
+          <button type="button" data-lang="sq">ALB</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero panel">
+      <div>
+        <p class="eyebrow" data-i18n="hero.eyebrow">Instructor review</p>
+        <h2 data-i18n="hero.title">Public scores and concise feedback for each submitted project.</h2>
+        <p data-i18n="hero.copy">This page shows only academic summary feedback. Personal or detailed correction notes should be sent privately or through the student PR when needed.</p>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Evaluation statistics">
+      <div class="stat"><strong id="submittedCount">0</strong><span data-i18n="stats.submitted">submitted</span></div>
+      <div class="stat"><strong id="reviewedCount">0</strong><span data-i18n="stats.reviewed">reviewed</span></div>
+      <div class="stat"><strong id="pendingCount">0</strong><span data-i18n="stats.pending">pending review</span></div>
+      <div class="stat"><strong id="averageScore">-</strong><span data-i18n="stats.average">average score</span></div>
+    </section>
+
+    <section class="toolbar panel" aria-label="Filters">
+      <div>
+        <p class="eyebrow" data-i18n="filters.eyebrow">Find</p>
+        <h2 data-i18n="filters.title">Evaluation list</h2>
+      </div>
+      <div class="filters">
+        <input id="searchInput" type="search" data-i18n-placeholder="filters.search" placeholder="Search topic, student, or feedback">
+        <select id="statusFilter" aria-label="Filter by status">
+          <option value="all" data-i18n="filter.all">All submissions</option>
+          <option value="reviewed" data-i18n="filter.reviewed">Reviewed</option>
+          <option value="needs-fixes" data-i18n="filter.needsFixes">Needs fixes</option>
+          <option value="pending-review" data-i18n="filter.pending">Pending review</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="grid" id="evaluationGrid" aria-live="polite"></section>
+    <div class="empty" id="emptyState" data-i18n="empty">No matching evaluations.</div>
+  </main>
+
+  <script>
+    const translations = {
+      en: {
+        pageTitle: 'Cloud & MCC 2026 Public Evaluations',
+        pageDescription: 'Public instructor evaluation summaries for Cloud and MCC 2026 student submissions.',
+        'page.heading': 'Cloud & MCC 2026 Public Evaluations',
+        'page.subtitle': 'Read-only instructor feedback summaries for submitted assignments.',
+        'nav.backHome': 'Back to Home',
+        'nav.reserve': 'Reservations',
+        'nav.submissions': 'Submissions',
+        'nav.evaluations': 'Evaluations',
+        'nav.syllabus': 'Syllabus',
+        'nav.instructionsEn': 'Instructions EN',
+        'nav.instructionsSq': 'Udhëzime Shqip',
+        'hero.eyebrow': 'Instructor review',
+        'hero.title': 'Public scores and concise feedback for each submitted project.',
+        'hero.copy': 'This page shows only academic summary feedback. Personal or detailed correction notes should be sent privately or through the student PR when needed.',
+        'stats.submitted': 'submitted',
+        'stats.reviewed': 'reviewed',
+        'stats.pending': 'pending review',
+        'stats.average': 'average score',
+        'filters.eyebrow': 'Find',
+        'filters.title': 'Evaluation list',
+        'filters.search': 'Search topic, student, or feedback',
+        'filter.all': 'All submissions',
+        'filter.reviewed': 'Reviewed',
+        'filter.needsFixes': 'Needs fixes',
+        'filter.pending': 'Pending review',
+        'empty': 'No matching evaluations.',
+        pendingReview: 'Pending review',
+        reviewed: 'Reviewed',
+        needsFixes: 'Needs fixes',
+        score: 'Score',
+        repo: 'Repository',
+        demo: 'Demo',
+        feedback: 'Feedback',
+        source: 'Evaluation source',
+        noEvaluation: 'Evaluation is not published yet.',
+      },
+      sq: {
+        pageTitle: 'Vlerësimet Publike Cloud & MCC 2026',
+        pageDescription: 'Përmbledhje publike të vlerësimeve të mësimdhënësit për dorëzimet Cloud dhe MCC 2026.',
+        'page.heading': 'Vlerësimet publike Cloud & MCC 2026',
+        'page.subtitle': 'Feedback i shkurtër, vetëm për lexim, për detyrat e dorëzuara.',
+        'nav.backHome': 'Kthehu në ballinë',
+        'nav.reserve': 'Rezervimet',
+        'nav.submissions': 'Dorëzimet',
+        'nav.evaluations': 'Vlerësimet',
+        'nav.syllabus': 'Syllabusi',
+        'nav.instructionsEn': 'Udhëzime EN',
+        'nav.instructionsSq': 'Udhëzime Shqip',
+        'hero.eyebrow': 'Vlerësimi i mësimdhënësit',
+        'hero.title': 'Pikët publike dhe feedback i shkurtër për çdo projekt të dorëzuar.',
+        'hero.copy': 'Kjo faqe shfaq vetëm përmbledhje akademike. Vërejtjet personale ose korrigjimet e hollësishme duhet të dërgohen privatisht ose në PR-në e studentit kur nevojitet.',
+        'stats.submitted': 'të dorëzuara',
+        'stats.reviewed': 'të vlerësuara',
+        'stats.pending': 'në pritje',
+        'stats.average': 'mesatarja e pikëve',
+        'filters.eyebrow': 'Gjej',
+        'filters.title': 'Lista e vlerësimeve',
+        'filters.search': 'Kërko temën, studentin ose feedback-un',
+        'filter.all': 'Të gjitha dorëzimet',
+        'filter.reviewed': 'Të vlerësuara',
+        'filter.needsFixes': 'Kërkojnë korrigjime',
+        'filter.pending': 'Në pritje të vlerësimit',
+        'empty': 'Nuk ka vlerësime që përputhen.',
+        pendingReview: 'Në pritje të vlerësimit',
+        reviewed: 'E vlerësuar',
+        needsFixes: 'Kërkon korrigjime',
+        score: 'Pikët',
+        repo: 'Repository',
+        demo: 'Demo',
+        feedback: 'Feedback',
+        source: 'Burimi i vlerësimeve',
+        noEvaluation: 'Vlerësimi ende nuk është publikuar.',
+      },
+    };
+
+    const grid = document.getElementById('evaluationGrid');
+    const emptyState = document.getElementById('emptyState');
+    const searchInput = document.getElementById('searchInput');
+    const statusFilter = document.getElementById('statusFilter');
+    let activeLanguage = localStorage.getItem('portal-language') || 'en';
+    let rows = [];
+
+    function t(key) {
+      return translations[activeLanguage][key] || translations.en[key] || key;
+    }
+
+    function applyLanguage(language) {
+      activeLanguage = language;
+      localStorage.setItem('portal-language', language);
+      document.documentElement.lang = language === 'sq' ? 'sq' : 'en';
+      document.title = t('pageTitle');
+      document.querySelector('meta[name="description"]').setAttribute('content', t('pageDescription'));
+      document.querySelectorAll('[data-i18n]').forEach((node) => {
+        node.textContent = t(node.dataset.i18n);
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach((node) => {
+        node.setAttribute('placeholder', t(node.dataset.i18nPlaceholder));
+      });
+      document.querySelectorAll('[data-lang]').forEach((button) => {
+        button.classList.toggle('active', button.dataset.lang === language);
+      });
+      render();
+    }
+
+    document.querySelectorAll('[data-lang]').forEach((button) => {
+      button.addEventListener('click', () => applyLanguage(button.dataset.lang));
+    });
+
+    async function fetchText(path) {
+      const response = await fetch(`${path}?ts=${Date.now()}`, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`Unable to fetch ${path}`);
+      return response.text();
+    }
+
+    function parseIdentity(value) {
+      const match = value.match(/^(.*?)\s*<([^>]+)>$/);
+      if (!match) return { name: value.trim(), email: '' };
+      return { name: match[1].trim(), email: match[2].trim() };
+    }
+
+    function parseTopics(markdown) {
+      const topics = new Map();
+      let category = 'Uncategorized';
+      const lines = markdown.split(/\r?\n/);
+
+      lines.forEach((line, index) => {
+        const heading = line.match(/^##\s+(.+)$/);
+        if (heading) {
+          category = heading[1].trim();
+          return;
+        }
+
+        const topic = line.match(/^(\d{2})\.\s+(.+?)\s—\s\((Available|Taken by [^)]+)\)$/);
+        if (!topic) return;
+
+        const score = (lines[index + 2] || '').match(/^\s+-\s+Score:\s+(.+)$/);
+        topics.set(topic[1], {
+          id: topic[1],
+          title: topic[2],
+          category,
+          scoreLabel: score ? score[1].trim() : 'Not graded (0-30)',
+        });
+      });
+
+      return topics;
+    }
+
+    function parseSubmissions(markdown) {
+      const submissions = new Map();
+
+      markdown.split(/\r?\n/).forEach((line) => {
+        const submitted = line.match(/^(\d{2})\.\s+(.+?)\s—\s\(Submitted by ([^)]+)\)\s—\sRepo:\s+(\S+)\s—\sDemo:\s+(.+)$/);
+        if (!submitted) return;
+
+        const identity = parseIdentity(submitted[3]);
+        submissions.set(submitted[1], {
+          id: submitted[1],
+          title: submitted[2],
+          name: identity.name,
+          email: identity.email,
+          repo: submitted[4].trim(),
+          demo: submitted[5].trim(),
+        });
+      });
+
+      return submissions;
+    }
+
+    function parseEvaluations(markdown) {
+      const evaluations = new Map();
+
+      markdown.split(/\r?\n/).forEach((line) => {
+        const evaluated = line.match(/^(\d{2})\.\s+(.+?)\s—\sScore:\s+(\d{1,2}\/30)\s—\sStatus:\s+(Reviewed|Needs fixes|Pending review)\s—\sFeedback EN:\s+(.+?)\s—\sFeedback SQ:\s+(.+)$/);
+        if (!evaluated) return;
+
+        evaluations.set(evaluated[1], {
+          score: evaluated[3],
+          status: normalizeStatus(evaluated[4]),
+          feedbackEn: evaluated[5].trim(),
+          feedbackSq: evaluated[6].trim(),
+        });
+      });
+
+      return evaluations;
+    }
+
+    function normalizeStatus(value) {
+      return String(value).trim().toLowerCase().replace(/\s+/g, '-');
+    }
+
+    function scoreValue(label) {
+      const match = String(label).match(/^(\d{1,2})\/30$/);
+      if (!match) return null;
+      const value = Number(match[1]);
+      return Number.isFinite(value) ? value : null;
+    }
+
+    function effectiveStatus(row) {
+      if (!row.evaluation) return 'pending-review';
+      if (row.evaluation.status === 'needs-fixes') return 'needs-fixes';
+      return 'reviewed';
+    }
+
+    function updateStats() {
+      const reviewed = rows.filter((row) => row.evaluation).length;
+      const pending = rows.length - reviewed;
+      const scored = rows
+        .map((row) => row.evaluation ? scoreValue(row.evaluation.score) : null)
+        .filter((value) => value !== null);
+      const totalScore = scored.reduce((sum, value) => sum + value, 0);
+
+      document.getElementById('submittedCount').textContent = rows.length;
+      document.getElementById('reviewedCount').textContent = reviewed;
+      document.getElementById('pendingCount').textContent = pending;
+      document.getElementById('averageScore').textContent = scored.length
+        ? `${(totalScore / scored.length).toFixed(1)}/30`
+        : '-';
+    }
+
+    function render() {
+      if (!rows.length) return;
+
+      const query = searchInput.value.trim().toLowerCase();
+      const filter = statusFilter.value;
+      const visible = rows.filter((row) => {
+        const status = effectiveStatus(row);
+        const matchesFilter = (
+          filter === 'all'
+          || (filter === 'reviewed' && row.evaluation)
+          || (filter === 'needs-fixes' && status === 'needs-fixes')
+          || (filter === 'pending-review' && !row.evaluation)
+        );
+        const feedback = row.evaluation
+          ? `${row.evaluation.feedbackEn} ${row.evaluation.feedbackSq}`
+          : '';
+        const haystack = [
+          row.id,
+          row.title,
+          row.name,
+          row.email,
+          row.topic ? row.topic.category : '',
+          feedback,
+        ].join(' ').toLowerCase();
+        return matchesFilter && (!query || haystack.includes(query));
+      });
+
+      grid.innerHTML = visible.map((row) => {
+        const evaluation = row.evaluation;
+        const status = effectiveStatus(row);
+        const score = evaluation ? evaluation.score : (row.topic ? row.topic.scoreLabel : 'Not graded (0-30)');
+        const feedback = evaluation
+          ? (activeLanguage === 'sq' ? evaluation.feedbackSq : evaluation.feedbackEn)
+          : t('noEvaluation');
+        const demoHref = row.demo.toUpperCase() === 'N/A' ? 'SUBMISSIONS_2026.md' : row.demo;
+
+        return `
+          <article class="evaluation-card ${status}">
+            <div class="card-head">
+              <span class="topic-id">${escapeHtml(row.id)}</span>
+              <span class="status ${status}">${statusLabel(status)}</span>
+            </div>
+            <div>
+              <h3>${escapeHtml(row.title)}</h3>
+              <p>${escapeHtml(row.topic ? row.topic.category : '')}</p>
+            </div>
+            <div class="identity">
+              <strong>${escapeHtml(row.name)}</strong>
+              <span>${escapeHtml(row.email)}</span>
+            </div>
+            <div class="feedback">
+              <strong>${t('feedback')}</strong>
+              <span>${escapeHtml(feedback)}</span>
+            </div>
+            <div class="card-foot">
+              <span class="score ${evaluation ? '' : 'pending'}">${t('score')}: ${escapeHtml(score)}</span>
+            </div>
+            <div class="card-links">
+              <a href="${escapeAttribute(row.repo)}">${t('repo')}</a>
+              <a href="${escapeAttribute(demoHref)}">${t('demo')}</a>
+              <a href="EVALUATIONS_2026.md">${t('source')}</a>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      emptyState.style.display = visible.length ? 'none' : 'block';
+    }
+
+    function statusLabel(status) {
+      if (status === 'reviewed') return t('reviewed');
+      if (status === 'needs-fixes') return t('needsFixes');
+      return t('pendingReview');
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function escapeAttribute(value) {
+      const raw = String(value);
+      if (!/^https?:\/\//i.test(raw) && !/^[A-Z0-9_-]+\.md$/i.test(raw)) return '#';
+      return escapeHtml(raw);
+    }
+
+    async function init() {
+      try {
+        const [topicText, submissionText, evaluationText] = await Promise.all([
+          fetchText('CLOUD_TOPICS_2026.md'),
+          fetchText('SUBMISSIONS_2026.md'),
+          fetchText('EVALUATIONS_2026.md'),
+        ]);
+        const topics = parseTopics(topicText);
+        const submissions = parseSubmissions(submissionText);
+        const evaluations = parseEvaluations(evaluationText);
+
+        rows = Array.from(submissions.values()).map((submission) => ({
+          ...submission,
+          topic: topics.get(submission.id) || null,
+          evaluation: evaluations.get(submission.id) || null,
+        }));
+
+        updateStats();
+        applyLanguage(activeLanguage);
+      } catch (error) {
+        grid.innerHTML = `<div class="empty" style="display:block">${escapeHtml(error.message)}</div>`;
+      }
+    }
+
+    searchInput.addEventListener('input', render);
+    statusFilter.addEventListener('change', render);
+    init();
+  </script>
+</body>
+</html>

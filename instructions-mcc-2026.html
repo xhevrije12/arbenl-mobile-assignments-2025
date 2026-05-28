@@ -99,6 +99,13 @@
       background: var(--teal);
       color: white;
     }
+
+    .button.active,
+    .button[aria-current="page"] {
+      border-color: var(--teal);
+      background: var(--teal);
+      color: white;
+    }
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
@@ -311,10 +318,13 @@
         </div>
       </div>
       <div class="actions" aria-label="Main links">
-        <a class="button primary" href="mcc-2026.html">Topic catalogue</a>
+        <a class="button" href="index.html">Back to Home</a>
+        <a class="button" href="mcc-2026.html">Topic catalogue</a>
+        <a class="button" href="syllabus-mcc-2026.html">Syllabus</a>
+        <a class="button active" href="instructions-mcc-2026.html" aria-current="page">Instructions EN</a>
         <a class="button" href="udhezime-mcc-2026.html">Shqip</a>
-        <a class="button" href="CLOUD_TOPICS_2026.md">Markdown list</a>
-        <a class="button" href="SUBMISSIONS_2026.md">Submissions</a>
+        <a class="button" href="submissions-2026.html">Submissions</a>
+        <a class="button" href="evaluations-2026.html">Evaluations</a>
       </div>
     </header>
 
@@ -326,15 +336,15 @@
       <aside class="rules" aria-label="Main rules">
         <div class="rule">
           <strong>Name and email are mandatory.</strong>
-          <span>The reservation format is `Taken by Full Name &lt;email@example.com&gt;`.</span>
+          <span>The reservation format is `Taken by Full Name &lt;email@example.com&gt;; Stack: Chosen stack`.</span>
         </div>
         <div class="rule">
           <strong>Change exactly one line.</strong>
           <span>Students must not edit descriptions, scores, scripts, workflows, HTML pages, or another student's topic.</span>
         </div>
         <div class="rule">
-          <strong>The reservation is official only after merge.</strong>
-          <span>Copying the claim line is not enough. The instructor/maintainer must merge the PR before everyone can see the reservation.</span>
+          <strong>The reservation is official after automatic merge.</strong>
+          <span>Copying the claim line is not enough. Open a PR; GitHub Actions checks it and automatically merges the first valid reservation.</span>
         </div>
       </aside>
     </section>
@@ -349,24 +359,34 @@
 
     <section class="section" id="reserve">
       <h2>How to reserve a topic</h2>
-      <p class="lead">Reservations are first in, first served. The first valid PR merged by the instructor/maintainer owns the topic and updates the public site.</p>
+      <p class="lead">Reservations are first in, first served. The first valid PR that passes automatic validation owns the topic and updates the public site.</p>
       <div class="demo-video">
         <video controls preload="metadata" poster="assets/demo-frames/frame-01.png">
           <source src="assets/mcc-2026-reservation-demo.mp4" type="video/mp4">
         </video>
-        <p>Watch the localhost demo: choose an available topic, copy the claim line, open a PR, and wait for instructor/maintainer merge.</p>
+        <p>Watch the localhost demo: choose an available topic, copy the claim line, and open a PR. Valid reservations are checked and merged automatically.</p>
       </div>
       <ol class="steps">
         <li>Open `mcc-2026.html`, find a topic, and check that it is `Available`.</li>
         <li>Click `Reserve`, enter your full name and email. Both are required.</li>
-        <li>Click `Copy claim line`; the correct line is copied, but this is not an official reservation yet.</li>
+        <li>Choose your stack, then click `Copy claim line`; the correct line is copied, but this is not an official reservation yet.</li>
         <li>Click `Edit on GitHub`; GitHub opens `CLOUD_TOPICS_2026.md` directly for editing.</li>
         <li>Replace only your topic line with the copied line, then click `Propose changes` and create a Pull Request.</li>
-        <li>Wait until validation passes and the instructor/maintainer merges the PR. The MCC page may show your open PR as pending, but only after merge is your topic officially reserved.</li>
+        <li>Wait for the automatic validation. The first valid PR is merged automatically; if another PR reserved the same topic first, your PR will stay unmerged and must be changed.</li>
       </ol>
-      <pre><code>01. Cloud-hosted Task Collaboration Platform — (Taken by Full Name &lt;email@example.com&gt;)</code></pre>
+      <pre><code>01. Cloud-hosted Task Collaboration Platform — (Taken by Full Name &lt;email@example.com&gt;; Stack: Next.js + serverless functions)</code></pre>
       <div class="warning">One student can reserve only one assignment. Validation rejects repeated names or emails.</div>
-      <p class="lead">After your PR is merged, use `Check your reservation` on the MCC page with the same full name or email to reopen your topic details. If you need to correct your own reservation later, open a new PR that changes only your existing topic line and keep the same name or the same email so validation can recognize that it is your reservation.</p>
+      <div class="grid">
+        <div class="panel">
+          <h3>Valid reservation PR</h3>
+          <p>Change exactly one line in `CLOUD_TOPICS_2026.md`: replace only `(Available)` with `(Taken by Full Name &lt;email@example.com&gt;; Stack: Chosen stack)`. If your topic is already reserved, use `Check your reservation`, choose/change the stack, and open a correction PR that edits only your same topic line.</p>
+        </div>
+        <div class="panel">
+          <h3>Invalid PRs</h3>
+          <p>Do not edit `mcc-2026.html`, do not rename files, do not remove `Cloud focus` or `Score`, do not duplicate the title, and do not put two students on one topic.</p>
+        </div>
+      </div>
+      <p class="lead">After GitHub Actions merges your valid PR automatically, use `Check your reservation` on the MCC page with the same full name or email to reopen your topic details. Reservation PRs are processed one at a time, so first-in, first-served is decided atomically by GitHub Actions.</p>
     </section>
 
     <section class="section" id="build">
